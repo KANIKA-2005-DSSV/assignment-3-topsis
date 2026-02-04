@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TOPSIS Web Service</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;   /* horizontal center */
+            align-items: center;       /* vertical center */
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+        }
+
+        .container {
+            width: 420px;
+            background: white;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>TOPSIS Web Service</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <p class="error">{{ message }}</p>
+          {% endfor %}
+        {% endwith %}
+
+        <form method="post" enctype="multipart/form-data">
+            <label>Input File</label>
+            <input type="file" name="file" required>
+
+            <label>Weights</label>
+            <input type="text" name="weights" placeholder="1,1,1,1,1" required>
+
+            <label>Impacts</label>
+            <input type="text" name="impacts" placeholder="+,+,-,+,-" required>
+
+            <label>Email ID</label>
+            <input type="email" name="email" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
